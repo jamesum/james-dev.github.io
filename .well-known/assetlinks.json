@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "co.bodit.farmershands.dev",
+      "sha256_cert_fingerprints": [
+        "31:6F:81:11:33:B2:AD:F3:A7:49:8B:B2:6B:CD:08:7B:4C:0F:7C:4B:16:F1:A3:36:42:C5:C7:7F:36:9E:86:FA",
+        "BE:F5:1A:29:44:73:7E:20:0B:60:A2:00:FE:74:20:45:C9:8E:1D:9C:19:39:95:3F:22:E7:D1:AE:7D:17:09:CF"
+      ]
+    }
+  }
+]

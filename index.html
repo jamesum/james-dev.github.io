@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#176d5c" />
+    <title>파머스핸즈 링크</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f8f4;
+        --ink: #14231f;
+        --muted: #60726b;
+        --primary: #176d5c;
+        --primary-dark: #0f4f43;
+        --line: #dce4df;
+        --panel: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          linear-gradient(145deg, rgba(23, 109, 92, 0.12), rgba(247, 248, 244, 0) 42%),
+          var(--bg);
+      }
+
+      main {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .shell {
+        width: min(100%, 480px);
+        padding: 32px 28px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        box-shadow: 0 22px 60px rgba(20, 35, 31, 0.12);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .mark {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        border-radius: 14px;
+        background: var(--primary);
+        color: #ffffff;
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .brand strong {
+        display: block;
+        font-size: 18px;
+        line-height: 1.2;
+      }
+
+      .brand span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .status {
+        width: fit-content;
+        margin-bottom: 16px;
+        padding: 7px 10px;
+        border-radius: 999px;
+        color: var(--primary);
+        background: rgba(23, 109, 92, 0.1);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .status.fallback {
+        color: #9b4b1a;
+        background: rgba(217, 112, 45, 0.12);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.25;
+        letter-spacing: 0;
+      }
+
+      p {
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .actions {
+        display: grid;
+        gap: 10px;
+        margin-top: 28px;
+      }
+
+      a,
+      button {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 16px;
+        border-radius: 10px;
+        font: inherit;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .primary {
+        border: 1px solid var(--primary);
+        color: #ffffff;
+        background: var(--primary);
+      }
+
+      .primary:hover {
+        background: var(--primary-dark);
+      }
+
+      .secondary {
+        border: 1px solid var(--line);
+        color: var(--ink);
+        background: #ffffff;
+      }
+
+      .link-box {
+        margin-top: 20px;
+        padding: 12px;
+        overflow-wrap: anywhere;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        color: var(--muted);
+        background: #f9fbf8;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .hint {
+        margin-top: 18px;
+        font-size: 13px;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      @media (max-width: 380px) {
+        .shell {
+          padding: 28px 22px;
+          border-radius: 16px;
+        }
+
+        h1 {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="shell" aria-labelledby="page-title">
+        <div class="brand">
+          <div class="mark" aria-hidden="true">F</div>
+          <div>
+            <strong>파머스핸즈</strong>
+            <span>Farmers Hands</span>
+          </div>
+        </div>
+
+        <div class="status" id="status-badge">앱 연결 확인 중</div>
+
+        <h1 id="page-title">파머스핸즈 앱으로 이동합니다.</h1>
+        <p id="page-description">
+          링크를 확인하고 있습니다. 앱이 설치되어 있고 연결 설정이 정상이라면 곧 앱 화면으로 이동합니다.
+        </p>
+
+        <div class="actions" id="fallback-actions" hidden>
+          <a class="primary" id="retry-link" href="/">앱으로 다시 열기</a>
+          <a class="secondary" id="store-link" href="https://apps.apple.com/kr/app/%ED%8C%8C%EB%A8%B8%EC%8A%A4%ED%95%B8%EC%A6%88/id1597418072">앱 설치하기</a>
+          <button class="secondary" id="copy-link" type="button">링크 복사</button>
+        </div>
+
+        <div class="link-box" id="current-link" aria-label="현재 링크"></div>
+        <p class="hint" id="copy-result" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script>
+      const currentUrl = window.location.href;
+      const iosStoreUrl = "https://apps.apple.com/kr/app/%ED%8C%8C%EB%A8%B8%EC%8A%A4%ED%95%B8%EC%A6%88/id1597418072";
+      const androidStoreUrl = "https://play.google.com/store/apps/details?id=co.bodit.farmershands";
+      const retryLink = document.querySelector("#retry-link");
+      const storeLink = document.querySelector("#store-link");
+      const copyButton = document.querySelector("#copy-link");
+      const currentLink = document.querySelector("#current-link");
+      const copyResult = document.querySelector("#copy-result");
+      const statusBadge = document.querySelector("#status-badge");
+      const title = document.querySelector("#page-title");
+      const description = document.querySelector("#page-description");
+      const fallbackActions = document.querySelector("#fallback-actions");
+
+      retryLink.href = currentUrl;
+      currentLink.textContent = currentUrl;
+      storeLink.href = /Android/i.test(navigator.userAgent) ? androidStoreUrl : iosStoreUrl;
+
+      const showFallback = () => {
+        statusBadge.hidden = true;
+        title.hidden = true;
+        description.hidden = true;
+        fallbackActions.hidden = false;
+        window.setTimeout(() => {
+          if (!document.hidden) window.location.href = storeLink.href;
+        }, 900);
+      };
+
+      const fallbackTimer = window.setTimeout(() => {
+        if (!document.hidden) showFallback();
+      }, 1800);
+
+      window.addEventListener("pagehide", () => window.clearTimeout(fallbackTimer));
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) window.clearTimeout(fallbackTimer);
+      });
+
+      copyButton.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(currentUrl);
+          copyResult.textContent = "링크를 복사했습니다.";
+        } catch (error) {
+          copyResult.textContent = "복사할 수 없으면 위 링크를 길게 눌러 복사해 주세요.";
+        }
+      });
+    </script>
+  </body>
+</html>

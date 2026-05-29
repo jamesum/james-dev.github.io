@@ -3,10 +3,8 @@
     "apps": [],
     "details": [
       {
-        "appID": "35N872HTP7.com.bodit.goroutetest",
-        "paths": [
-          "*"
-        ]
+        "appID": "35N872HTP7.co.bodit.farmershands.dev",
+        "paths": ["*"]
       }
     ]
   }
