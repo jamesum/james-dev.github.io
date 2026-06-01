@@ -210,7 +210,6 @@
 
     <script>
       const appLinkOrigin = "https://james-dev-test.netlify.app";
-      const currentUrl = window.location.href;
       const appLinkUrl = `${appLinkOrigin}${window.location.pathname}${window.location.search}${window.location.hash}`;
       const iosStoreUrl = "https://apps.apple.com/kr/app/%ED%8C%8C%EB%A8%B8%EC%8A%A4%ED%95%B8%EC%A6%88/id1597418072";
       const androidStoreUrl = "https://play.google.com/store/apps/details?id=co.bodit.farmershands";
@@ -233,9 +232,6 @@
         title.hidden = true;
         description.hidden = true;
         fallbackActions.hidden = false;
-        window.setTimeout(() => {
-          if (!document.hidden) window.location.href = storeLink.href;
-        }, 900);
       };
 
       const fallbackTimer = window.setTimeout(() => {
